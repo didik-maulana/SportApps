@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SportApps</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="msg_sport_image">Sport Image</string>
+    <string name="action_add_to_favorite">Add to Favorite</string>
+    <string name="action_remove_favorite">Remove from Favorite</string>
+    <string name="title_sport_detail">Sport Detail</string>
+    <string name="msg_empty_sport_data">Empty Sport Data</string>
+    <string name="msg_success_add_favorite">Success add to favorite</string>
+    <string name="msg_removed_from_favorite">Removed from favorite</string>
+</resources>
