@@ -88,8 +88,7 @@ public class SportDetailActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Boolean isFavorite = Objects.requireNonNull(detailViewModel.getSport().getValue())
-                        .getIsFavorite();
+                Boolean isFavorite = Objects.requireNonNull(detailViewModel.getSport().getValue()).getIsFavorite();
                 if (isFavorite != null) {
                     handleFavoriteClicked(isFavorite);
                 }
@@ -111,8 +110,7 @@ public class SportDetailActivity extends AppCompatActivity {
     }
 
     private void setFavoriteButton(Boolean isFavorite) {
-        favoriteButton.setText(getString(
-                isFavorite ? R.string.action_remove_favorite : R.string.action_add_to_favorite));
+        favoriteButton.setText(getString(isFavorite ? R.string.action_remove_favorite : R.string.action_add_to_favorite));
     }
 
     private void showMessage(String message) {
@@ -201,8 +199,7 @@ public class SportDetailActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            activity.get()
-                    .showMessage(activity.get().getString(R.string.msg_removed_from_favorite));
+            activity.get().showMessage(activity.get().getString(R.string.msg_removed_from_favorite));
         }
     }
 }
