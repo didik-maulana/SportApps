@@ -82,11 +82,15 @@ public class FavoriteFragment extends Fragment implements ItemSportListener {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getFavoriteTask = null;
-                initFavoriteTask();
-                getFavoriteTask.execute();
+                refreshFavorite();
             }
         });
+    }
+
+    private void refreshFavorite() {
+        getFavoriteTask = null;
+        initFavoriteTask();
+        getFavoriteTask.execute();
     }
 
     private void registerObserver() {
