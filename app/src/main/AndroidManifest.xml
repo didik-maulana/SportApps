@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.codingtive.sportapps">
 
+    <permission
+        android:name="com.codingtive.sportapps.provider.READ_WRITE"
+        android:protectionLevel="normal" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".view.activity.detail.SportDetailActivity"></activity>
+        <activity android:name=".view.activity.detail.SportDetailActivity" />
         <activity android:name=".view.activity.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +24,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".widget.SportWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/sport_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".widget.WidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <provider
+            android:name="com.codingtive.sportapps.provider.AppProvider"
+            android:authorities="com.codingtive.sportapps.provider"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="true"
+            android:permission="com.codingtive.sportapps.provider.READ_WRITE" />
     </application>
 
 </manifest>

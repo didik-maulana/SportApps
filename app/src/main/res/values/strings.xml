@@ -12,4 +12,6 @@
     <string name="msg_empty_sport_data">Empty Sport Data</string>
     <string name="msg_success_add_favorite">Success add to favorite</string>
     <string name="msg_removed_from_favorite">Removed from favorite</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

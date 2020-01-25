@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Sport App Consumer</string>
+    <string name="msg_sport_image">Sport Image</string>
+    <string name="msg_empty_sport">Empty Sport Data</string>
+</resources>

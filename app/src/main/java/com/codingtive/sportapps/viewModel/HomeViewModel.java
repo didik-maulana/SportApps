@@ -19,7 +19,7 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
     public void getSports() {
-        isLoading.setValue(true);
+        isLoading.postValue(true);
         new RetrofitClient().getClient().getSports().enqueue(getSportsCallback());
     }
 
@@ -28,18 +28,18 @@ public class HomeViewModel extends ViewModel {
             @Override
             public void onResponse(Call<SportResponse> call,
                                    Response<SportResponse> response) {
-                isLoading.setValue(false);
+                isLoading.postValue(false);
                 if (response.body() != null) {
                     sports.postValue(response.body().getSports());
                 } else {
-                    message.setValue("Sports not available");
+                    message.postValue("Sports not available");
                 }
             }
 
             @Override
             public void onFailure(Call<SportResponse> call, Throwable t) {
-                isLoading.setValue(false);
-                message.setValue("Failed load sport data");
+                isLoading.postValue(false);
+                message.postValue("Failed load sport data");
             }
         };
     }

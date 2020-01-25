@@ -1,5 +1,7 @@
 package com.codingtive.sportapps.data.dao;
 
+import android.database.Cursor;
+
 import com.codingtive.sportapps.data.model.Sport;
 
 import java.util.List;
@@ -22,4 +24,7 @@ public interface SportDao {
 
     @Query("SELECT * FROM sport WHERE idSport=:id")
     Sport getSport(String id);
+
+    @Query("SELECT * FROM sport")
+    Cursor getSportsCursor();
 }

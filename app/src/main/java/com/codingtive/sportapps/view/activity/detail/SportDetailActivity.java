@@ -13,6 +13,7 @@ import com.codingtive.sportapps.R;
 import com.codingtive.sportapps.data.database.RoomClient;
 import com.codingtive.sportapps.data.model.Sport;
 import com.codingtive.sportapps.viewModel.SportDetailViewModel;
+import com.codingtive.sportapps.widget.SportWidget;
 
 import java.lang.ref.WeakReference;
 import java.util.Objects;
@@ -123,6 +124,10 @@ public class SportDetailActivity extends AppCompatActivity {
         insertFavoriteTask = new InsertFavoriteTask(this);
     }
 
+    private void updateWidget() {
+        new SportWidget().updateWidgetComponent(this);
+    }
+
     private static class GetFavoriteTask extends AsyncTask<Void, Void, Sport> {
         private String sportId;
         private WeakReference<SportDetailActivity> activity;
@@ -175,6 +180,7 @@ public class SportDetailActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             activity.get().showMessage(activity.get().getString(R.string.msg_success_add_favorite));
+            activity.get().updateWidget();
         }
     }
 
@@ -200,6 +206,7 @@ public class SportDetailActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             activity.get().showMessage(activity.get().getString(R.string.msg_removed_from_favorite));
+            activity.get().updateWidget();
         }
     }
 }
