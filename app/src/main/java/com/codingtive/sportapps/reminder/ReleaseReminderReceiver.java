@@ -20,6 +20,7 @@ import com.codingtive.sportapps.view.activity.main.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
@@ -74,8 +75,7 @@ public class ReleaseReminderReceiver extends BroadcastReceiver {
 
     private void getEvents(final Context context) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        //final String currentDate = dateFormat.format(new Date());
-        final String currentDate = "2020-02-02";
+        final String currentDate = dateFormat.format(new Date());
 
         final RetrofitClient retrofitClient = new RetrofitClient();
         retrofitClient.getClient()
