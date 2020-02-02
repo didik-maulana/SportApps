@@ -6,6 +6,7 @@
     <permission
         android:name="com.codingtive.sportapps.provider.READ_WRITE"
         android:protectionLevel="normal" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity
+            android:name=".view.activity.settings.SettingsActivity"
+            android:label="@string/title_activity_settings" />
         <activity android:name=".view.activity.detail.SportDetailActivity" />
         <activity android:name=".view.activity.main.MainActivity">
             <intent-filter>
@@ -34,13 +38,22 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/sport_widget_info" />
         </receiver>
+        <receiver
+            android:name=".reminder.DailyReminderReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name=".reminder.ReleaseReminderReceiver"
+            android:enabled="true"
+            android:exported="false" />
 
         <service
             android:name=".widget.WidgetRemoteViewsService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <provider
-            android:name="com.codingtive.sportapps.provider.AppProvider"
+            android:name=".provider.AppProvider"
             android:authorities="com.codingtive.sportapps.provider"
             android:enabled="true"
             android:exported="true"

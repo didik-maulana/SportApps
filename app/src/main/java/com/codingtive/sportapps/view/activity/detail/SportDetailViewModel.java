@@ -1,4 +1,4 @@
-package com.codingtive.sportapps.viewModel;
+package com.codingtive.sportapps.view.activity.detail;
 
 import android.content.Intent;
 

@@ -39,13 +39,11 @@ public class AppProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null);
         return uri;
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null);
         return 0;
     }
 

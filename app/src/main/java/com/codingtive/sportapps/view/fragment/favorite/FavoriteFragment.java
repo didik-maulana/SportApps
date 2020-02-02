@@ -14,7 +14,6 @@ import com.codingtive.sportapps.data.database.RoomClient;
 import com.codingtive.sportapps.data.model.Sport;
 import com.codingtive.sportapps.interfaces.ItemSportListener;
 import com.codingtive.sportapps.view.activity.detail.SportDetailActivity;
-import com.codingtive.sportapps.viewModel.FavoriteViewModel;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

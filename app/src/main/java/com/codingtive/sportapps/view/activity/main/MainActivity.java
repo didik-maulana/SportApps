@@ -1,10 +1,13 @@
 package com.codingtive.sportapps.view.activity.main;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.codingtive.sportapps.R;
 import com.codingtive.sportapps.adapter.FragmentAdapter;
+import com.codingtive.sportapps.view.activity.settings.SettingsActivity;
 import com.codingtive.sportapps.view.fragment.favorite.FavoriteFragment;
 import com.codingtive.sportapps.view.fragment.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,6 +32,25 @@ public class MainActivity extends AppCompatActivity
         setupViewPager();
         setupBottomNavigation();
         setToolbarTitle(getString(R.string.title_home));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_settings) {
+            openSettingsPage();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void openSettingsPage() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     private void setupPageAdapter() {

@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.codingtive.sportapps.R;
 import com.codingtive.sportapps.data.database.RoomClient;
 import com.codingtive.sportapps.data.model.Sport;
-import com.codingtive.sportapps.viewModel.SportDetailViewModel;
 import com.codingtive.sportapps.widget.SportWidget;
 
 import java.lang.ref.WeakReference;
@@ -180,7 +179,7 @@ public class SportDetailActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             activity.get().showMessage(activity.get().getString(R.string.msg_success_add_favorite));
-            activity.get().updateWidget();
+            new SportWidget().updateWidgetComponent(activity.get().getApplicationContext());
         }
     }
 

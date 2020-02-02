@@ -1,13 +1,5 @@
 package com.codingtive.consumer.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -18,13 +10,19 @@ import com.codingtive.consumer.R;
 import com.codingtive.consumer.adapter.SportAdapter;
 import com.codingtive.consumer.helper.DataObserver;
 import com.codingtive.consumer.helper.DatabaseContract;
-import com.codingtive.consumer.helper.MappingHelper;
+import com.codingtive.consumer.interfaces.LoadFavoriteListener;
 import com.codingtive.consumer.model.Sport;
+import com.codingtive.consumer.task.GetFavoriteTask;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+public class MainActivity extends AppCompatActivity implements LoadFavoriteListener {
     private RecyclerView sportRecyclerView;
     private TextView emptyTextView;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -43,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         observeSportList();
         registerContentObserver();
         getFavoriteSports();
+    }
+
+    @Override
+    public void onFavoriteLoaded(List<Sport> sports) {
+        mainViewModel.setSports(sports);
     }
 
     private void initViewModel() {
@@ -87,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 sportAdapter.setSportList(sports);
                 swipeRefreshLayout.setRefreshing(false);
 
-                if (sports.isEmpty()) {
+                if (sportAdapter.getItemCount() == 0) {
                     emptyTextView.setVisibility(View.VISIBLE);
                 }
             }
@@ -95,29 +98,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getFavoriteSports() {
-        new GetFavoriteTask(this).execute();
-    }
-
-    public static class GetFavoriteTask extends AsyncTask<Void, Void, List<Sport>> {
-        private final WeakReference<MainActivity> activityReference;
-
-        GetFavoriteTask(MainActivity activity) {
-            activityReference = new WeakReference<>(activity);
-        }
-
-        @Override
-        protected List<Sport> doInBackground(Void... voids) {
-            Cursor sportCursor = activityReference.get()
-                    .getApplicationContext()
-                    .getContentResolver()
-                    .query(DatabaseContract.AppDatabase.CONTENT_URI, null, null, null, null);
-            return MappingHelper.mapCursorToArrayList(sportCursor);
-        }
-
-        @Override
-        protected void onPostExecute(List<Sport> sports) {
-            super.onPostExecute(sports);
-            activityReference.get().mainViewModel.setSports(sports);
-        }
+        new GetFavoriteTask(this, this).execute();
     }
 }

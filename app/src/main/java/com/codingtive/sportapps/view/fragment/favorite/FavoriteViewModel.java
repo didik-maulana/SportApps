@@ -1,4 +1,4 @@
-package com.codingtive.sportapps.viewModel;
+package com.codingtive.sportapps.view.fragment.favorite;
 
 import com.codingtive.sportapps.data.model.Sport;
 

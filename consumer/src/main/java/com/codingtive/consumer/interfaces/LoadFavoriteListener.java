@@ -4,6 +4,6 @@ import com.codingtive.consumer.model.Sport;
 
 import java.util.List;
 
-interface LoadDataListener {
-    void onDataLoaded(List<Sport> sports);
+public interface LoadFavoriteListener {
+    void onFavoriteLoaded(List<Sport> sports);
 }

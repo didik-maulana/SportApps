@@ -1,25 +1,27 @@
 package com.codingtive.consumer.helper;
 
+import android.content.Context;
 import android.database.ContentObserver;
 import android.os.Handler;
 
-import com.codingtive.consumer.view.MainActivity;
+import com.codingtive.consumer.interfaces.LoadFavoriteListener;
+import com.codingtive.consumer.task.GetFavoriteTask;
 
 import java.lang.ref.WeakReference;
 
 public class DataObserver {
     public static class Observer extends ContentObserver {
-        private WeakReference<MainActivity> activityReference;
+        private WeakReference<Context> contextReference;
 
-        public Observer(Handler handler, MainActivity activity) {
+        public Observer(Handler handler, Context context) {
             super(handler);
-            activityReference = new WeakReference<>(activity);
+            contextReference = new WeakReference<>(context);
         }
 
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
-            activityReference.get().getFavoriteSports();
+            new GetFavoriteTask(contextReference.get(), (LoadFavoriteListener) contextReference.get()).execute();
         }
     }
 }

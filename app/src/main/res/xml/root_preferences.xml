@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Reminder">
+
+        <SwitchPreferenceCompat
+            app:key="key_daily_reminder"
+            app:title="@string/title_daily_reminder" />
+
+        <SwitchPreferenceCompat
+            app:key="key_release_reminder"
+            app:title="@string/title_release_reminder" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
